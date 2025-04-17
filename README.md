@@ -32,7 +32,6 @@
 - Convert JSON string to Python object: json.loads() (if needed)
 - Send response back to client in the appropriate format.
 
-
 ## The working:
 
 - json.dumps: Converts a Python object (like a dictionary, list, or string) into a JSON string.
@@ -54,3 +53,7 @@
 The socket communication can only handle bytes, not strings. 
 So, we encode the JSON string into bytes before sending it over the socket.
 
+
+### TODO:
+- add multithreading (threading or concurrent.futures)
+- add number of servers (server pool)
