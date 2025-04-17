@@ -9,7 +9,7 @@ def start_client():
 
         message_dict = {
             "code": 0,
-            "payload": "The lion ____ anyon who speaks!"
+            "payload": "Hello from the client!"
         }
         
         client_socket.sendall(json.dumps(message_dict).encode())
@@ -19,8 +19,7 @@ def start_client():
         if response_data:
             # Convert the JSON string back to a Python dictionary
             response_dict = json.loads(response_data)
-            print("Response received from proxy:")
-            print(json.dumps(response_dict, indent=4))
+            print("Payload received from proxy:\n", response_dict["payload"])
         else:
             print("No response received.")
             

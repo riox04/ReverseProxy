@@ -11,8 +11,7 @@ def handle_connection(conn):
             return
         
         request_dict = json.loads(req_data)
-        print("Message received from proxy:")
-        print(json.dumps(request_dict, indent=4))
+        print("Message received from proxy:\n", request_dict["payload"])
 
         response_dict = {
             "code": 200,
@@ -35,7 +34,7 @@ def start_server():
     
     while True:
         c, addr = server_socket.accept()
-        print(f"Accepted connection from {addr}")
+        #print(f"Accepted connection from {addr}")
         handle_connection(c)
 
 if __name__ == "__main__":

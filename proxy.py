@@ -15,8 +15,8 @@ def handle_client_proxy(client_conn):
         # Convert JSON string to Python dict
         request_dict = json.loads(req_json)
 
-        print("Message received from:")
-        print(json.dumps(request_dict))  # Pretty print dict as JSON
+        print("Message received from client:")
+        print(request_dict["payload"])  # Pretty print dict as JSON
 
         # Connect to backend server
         server_socket = socket.socket()
@@ -30,9 +30,8 @@ def handle_client_proxy(client_conn):
 
         if not response_json:
             return
-
-        print("Response from server:")
-        print(response_json)
+        response_dict = json.loads(response_json)
+        print("Payload received from proxy:\n", response_dict["payload"])
 
         # Send response back to client
         client_conn.sendall(response_json.encode())  # it's already a JSON string, no need for dumps()
@@ -52,7 +51,7 @@ def start_proxy():
     print("Reverse Proxy Server is running on port 8080...")
     while True:
         c, addr = proxy_socket.accept() #c is a new socket object 
-        print(f"Accepted connection from {addr}")
+        #print(f"Accepted connection from {addr}")
         handle_client_proxy(c)
 
 if __name__ == "__main__":

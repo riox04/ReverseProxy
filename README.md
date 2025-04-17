@@ -1,4 +1,4 @@
-# ReverseProxy
+# Reverse Proxy
  Reverse Proxy Server
 
 ## How to run:
@@ -8,6 +8,30 @@
 - python proxy.py
 - python client.py
 - We can see the sending and receiving of messages through the proxy from the client to the server.
+
+
+## General Flow in Network Communication (Socket):
+### Client → Proxy:
+- Convert Python object to JSON string: json.dumps()
+- Convert JSON string to bytes: .encode()
+- Send bytes over the socket.
+
+### Proxy → Server:
+- Receive bytes over the socket.
+- Decode bytes to string: .decode()
+- Convert JSON string to Python object: json.loads()
+
+### Server → Proxy (response):
+- Convert Python object (response) to JSON string: json.dumps()
+- Convert JSON string to bytes: .encode()
+- Send bytes back to proxy.
+
+### Proxy → Client (final response):
+- Receive bytes from server.
+- Decode bytes to string: .decode()
+- Convert JSON string to Python object: json.loads() (if needed)
+- Send response back to client in the appropriate format.
+
 
 ## The working:
 
@@ -30,26 +54,3 @@
 The socket communication can only handle bytes, not strings. 
 So, we encode the JSON string into bytes before sending it over the socket.
 
-
-
-General Flow in Network Communication (Socket):
-Client → Proxy:
-- Convert Python object to JSON string: json.dumps()
-- Convert JSON string to bytes: .encode()
-- Send bytes over the socket.
-
-Proxy → Server:
-- Receive bytes over the socket.
-- Decode bytes to string: .decode()
-- Convert JSON string to Python object: json.loads()
-
-Server → Proxy (response):
-- Convert Python object (response) to JSON string: json.dumps()
-- Convert JSON string to bytes: .encode()
-- Send bytes back to proxy.
-
-Proxy → Client (final response):
-- Receive bytes from server.
-- Decode bytes to string: .decode()
-- Convert JSON string to Python object: json.loads() (if needed)
-- Send response back to client in the appropriate format.
