@@ -4,9 +4,10 @@
 ## How to run:
 - Open three terminals
 - Run each of these commands in the given order in separate terminals
-- python server.py
-- python proxy.py
-- python client.py
+- ```python server.py```
+- ```python proxy.py```
+- ```python client.py```
+- Enter the message you want to send
 - We can see the sending and receiving of messages through the proxy from the client to the server.
 
 
