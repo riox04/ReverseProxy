@@ -1,7 +1,9 @@
 import socket
 import json
+import argparse
 
 def start_client():
+    payload = input("Please enter the message to be sent: ")
     try:
         # Connect to the reverse proxy 
         client_socket = socket.socket()
@@ -9,7 +11,7 @@ def start_client():
 
         message_dict = {
             "code": 0,
-            "payload": "Hello from the client!"
+            "payload": payload
         }
         
         client_socket.sendall(json.dumps(message_dict).encode())
